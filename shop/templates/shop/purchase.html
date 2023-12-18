@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Покупка</title>
+    <style>
+        H1 {
+          text-align: center;
+          color: #000080 
+        }
+        H3 { 
+          font-size: 30px; 
+          font-family: cursive; 
+          color: #000080; 
+          bgcolor: #C0C0C0;
+          text-align: center
+        }    
+        td, tr { 
+            font-size: 20px; 
+            align: right;
+            font-family: cursive; 
+            color: #000080; 
+            bgcolor: #C0C0C0;
+            width: 60px;
+            text-align: center;
+            border: 1px solid #333
+          }        
+    </style>
+</head>
+<body>
+<div>
+    <h1>Спасибо за покупку, {{person}} !</h1>
+    <h3>Вы купили следующие товары:</h3>
+    <table align="center">
+        <tr>
+            <td>
+                <p>Название:</p>
+            </td>
+            <td>
+                <p>Цена:</p>
+            </td>
+            <td>
+                <p>Количество:</p>
+            </td>
+            <td>
+                <p>Общая стоимость:</p>
+            </td>
+        </tr>
+            {% for p in purchase %}
+                <tr>
+                    <td>
+                        <p>{{ p.name }}</p>
+                    </td>
+                    <td>
+                        <p>{{ p.price }} руб.</p>
+                    </td>
+                    <td>
+                        <p>{{ p.quantity_purchased }} шт.</p>
+                    </td>
+                    <td>
+                        <p>{% widthratio p.quantity_purchased 1 p.price %} руб.</p>
+                    </td>
+                </tr>
+        {% endfor %}
+<tr>
+                    <th>
+                        
+                    </th>
+                    <th>
+                        
+                    </th>
+                    <td>
+                    <p>Итого:</p>
+                    </td>
+                    <th>
+                        <p>{{ total_cost }} руб.</p>
+                    </th>
+                </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,15 +1,18 @@
 - model: shop.product
   pk: 1
   fields:
-    name: Стол
-    price: 2000
+    name: Кровать
+    price: 20000
+    quantity_on_stock: 10
 - model: shop.product
   pk: 2
   fields:
-    name: Стул
-    price: 1000
+    name: Диван
+    price: 15000
+    quantity_on_stock: 7
 - model: shop.product
   pk: 3
   fields:
-    name: Табурет
-    price: 500
+    name: Кресло
+    price: 10000
+    quantity_on_stock: 15

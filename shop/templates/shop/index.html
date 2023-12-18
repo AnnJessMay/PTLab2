@@ -1,26 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Товары</title>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Товары</title> 
+    <style>
+        H3 { 
+          font-size: 30px; 
+          font-family: cursive; 
+          color: #000080; 
+          text-align: center
+        }    
+        th { 
+          font-size: 20px; 
+          align: right;
+          font-family: cursive; 
+          color: #000080; 
+          width: 40px;
+          text-align: center;
+          border: 1px solid #333
+        }        
+        th {
+          width: 300px;
+          margin: auto;
+          text-align: center;
+          border-collapse: collapse;
+          }
+    </style>
 </head>
 <body>
-    <div>
-        <h3>Список</h3>
-        <table>
-            <tr>
-                <td><p>Наименование</p></td>
-                <td><p>Цена</p></td>
-                <td></td>
-            </tr>
+ <div>
+    <h3>Магазин мягкой мебели</h3>
+    <table align="center">  
+        <tr>
+            <th><p>Наименование</p></th>
+            <th><p>Цена</p></th>
+            <th><p>Количество товара в наличии</p></th>
+            <th><p>Укажите необходимое количество товара</p></th>          
+        </tr>
+        <form method="post" action="/purchase">
+            {% csrf_token %}
             {% for p in products %}
                 <tr>
-                    <td><p>{{ p.name }}</p></td>
-                    <td><p>{{ p.price }}</p></td>
-                    <td><p><a href="/buy/{{ p.id }}">Купить</a></p></td>
+                    <th>
+                        <p>{{ p.name }}</p>
+                    </th>
+                    <th>
+                        <p>{{ p.price }} руб. </p>
+                    </th>
+                    <th>
+                        <p>{{ p.quantity_on_stock }} шт.</p>
+                    </th>
+                    <th>
+                        <label>
+                            <input type="number" max="1" min="0" name="quantity {{ p.id }}"/>
+                        </label>
+                    </th>
                 </tr>
             {% endfor %}
-        </table>
-    </div>
+            <tr>                 
+                <th>
+                    <p>Введите свое имя: </p>
+                </th>
+                <th>
+                    <label>
+                        <input type="text" required="required" name="person"/>
+                    </label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p>Введите адрес доставки:</p>
+                </th>
+                <th>
+                    <label>
+                        <input type="text" required="required" name="address"/>
+                    </label>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input type="submit" value="Оплатить"/>
+                </th>
+            </tr>
+    </table>
+        </form>
+</div> 
 </body>
 </html>
